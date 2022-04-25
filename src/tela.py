@@ -2,6 +2,7 @@ from huffman import HuffmanCoding
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
+from time import sleep
 
 import re
 import numpy as np
@@ -26,8 +27,14 @@ def buscarArquivos():
 
 
 def comprimirImagem():
+
+    
     
     local = buscarArquivos.caminho
+
+    # x = 40
+    # sleep(x)
+    
     
     h = 1
     if h == 1:
@@ -41,15 +48,6 @@ def comprimirImagem():
         print("Valores de entrada:", string_entrada)
         string_entrada = str(string_entrada.tolist())
 
-        im = Image.open(local).convert("RGB")
-        im.save(local, "png")
-
-        im.show()
-
-        # img = PhotoImage(file=local)
-
-        # label_imagem = Label(root, image=img)
-        # label_imagem.pack()
 
     elif h == 2:
         array = np.arange(0, 737280, 1, np.uint8)
@@ -193,6 +191,13 @@ def comprimirImagem():
         data.save('imagem descomprimida.png')
         print("Descomprimida com sucesso")
 
+    im = Image.open(local).convert("RGB")
+    im.save(local, "png")
+
+    im.show()
+
+
+
 # Comprimir
 def compress():
 
@@ -209,7 +214,7 @@ def compress():
 def limpar():
     text.delete('1.0', END)
 
-new_c = "forestgreen"
+new_c = "red"
 
 
 #----Nome da Janela-----#
@@ -222,8 +227,6 @@ mainframe = customtkinter.CTkFrame(root)
 mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
 mainframe.columnconfigure(0, weight=1)
 mainframe.rowconfigure(0, weight=1)
-
-
 
 
 #----Menu----#
@@ -247,13 +250,13 @@ menu_edit.add_command(label='Colar')
 
 #--Selecionar o arquivo---#
 select_file_label = customtkinter.CTkLabel(mainframe,
-                                            text="Local do arquivo selecionado:",
+                                            text="Local do arquivo:",
                                             width=200,
                                             height=50,
                                             fg_color=None)
 select_file_label.grid(row=0, column=0, pady=10, padx=30, sticky=(W))
 
-pathh = customtkinter.CTkEntry(mainframe, width=240)
+pathh = customtkinter.CTkEntry(mainframe, width=240, border_color = 'red')
 pathh.grid(row=0, column=1, columnspan=2, pady=5, padx=10, sticky=())
 
 select_file_btn1 = customtkinter.CTkButton(mainframe,
@@ -261,7 +264,7 @@ select_file_btn1 = customtkinter.CTkButton(mainframe,
                                            command=buscarArquivos,
                                             fg_color=None,
                                             border_width=2,
-                                            border_color=new_c,
+                                            border_color='red',
                                             hover_color=new_c)
 select_file_btn1.grid(row=0, column=3, pady=5, padx=10)
 
@@ -283,14 +286,14 @@ mob_btn = customtkinter.CTkButton(mainframe,
                                   command=comprimirImagem,
                                   fg_color=None,
                                   border_width=2,
-                                  border_color=new_c,
+                                  border_color='red',
                                   hover_color=new_c)
-mob_btn.grid(row=1, column=1, pady=5, padx=10, sticky=())
+mob_btn.grid(row=1, column=3, pady=5, padx=10, sticky=())
 
 
 #-- Botões ---#
 
-text = tk.Text(mainframe, wrap=WORD, height=30, width=100)
+text = tk.Text(mainframe, wrap=WORD, height=15, width=100)
 text.grid(row=2, column=0, columnspan=5, padx=35, pady=20)
 
 clear_btn = customtkinter.CTkButton(mainframe,
@@ -298,7 +301,7 @@ clear_btn = customtkinter.CTkButton(mainframe,
                                     command=limpar,
                                     fg_color=None,
                                     border_width=2,
-                                    border_color=new_c,
+                                    border_color='red',
                                     hover_color=new_c)
 clear_btn.grid(row=4, column=4, pady=20, padx=10)
 
