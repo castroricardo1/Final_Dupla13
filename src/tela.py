@@ -40,6 +40,17 @@ def comprimirImagem():
         a = string_entrada
         print("Valores de entrada:", string_entrada)
         string_entrada = str(string_entrada.tolist())
+
+        im = Image.open(local).convert("RGB")
+        im.save(local, "png")
+
+        im.show()
+
+        # img = PhotoImage(file=local)
+
+        # label_imagem = Label(root, image=img)
+        # label_imagem.pack()
+
     elif h == 2:
         array = np.arange(0, 737280, 1, np.uint8)
         string_entrada = np.reshape(array, (1024, 720))
